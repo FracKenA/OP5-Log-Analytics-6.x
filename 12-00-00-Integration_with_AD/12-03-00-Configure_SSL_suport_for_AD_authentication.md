@@ -1,52 +1,42 @@
-Configure SSL suport for AD authentication.
--------------------------------------------
+# Configure SSL suport for AD authentication.
 
-
-
-Open the certificate manager on the AD server.
-
+## Export Certificate from Active Directory
+1. Open the certificate manager on the AD server.
 ![](/media/media/image78_js.png)
- Select the certificate and open it
 
+2. Select the certificate and open it
 ![](/media/media/image79_js.png)
 
-Select the option of copying to a file in the Details tab
-
+3. Select the option of copying to a file in the Details tab
 ![](/media/media/image80_js.png)
 
-Click the Next button
-
+4. Click the Next button
 ![](/media/media/image81.png)
 
-Keep the setting as shown below and click Next
-
+5. Keep the setting as shown below and click Next
 ![](/media/media/image82.png)
 
-Keep the setting as shown below and click Next.
-
+6. Keep the setting as shown below and click Next.
 ![](/media/media/image83.png)
 
-Give the name a certificate
-
+7. Give the certificate a name
 ![](/media/media/image84.png)
 
-After the certificate is exported, this certificate should be imported
-into a trusted certificate file that will be used by the Elasticsearch
-plugin.
+8. After the certificate is exported, this certificate should be imported into a trusted certificate file that will be used by the Elasticsearch plugin.
 
-To import a certificate into a trusted certificate file, a tool called
-„keytool.exe" is located in the JDK installation directory.
 
-Use the following command to import a certificate file:
+## Import Certificate into Java Keystore
 
-	keytool -import -alias adding_certificate_keystore -file certificate.cer -keystore certificatestore
-The values for RED should be changed accordingly.
+To import a certificate into a trusted certificate file, a tool called `keytool` which is located in the JDK installation directory.
+  
+Use the following command to import a certificate file changing the path to your SSL Certificate.
+`keytool -import -alias YOUR_AD_DOMAIN_FQDN -storepass SUPER_SECRET_PASSWORD -file PATH_TO_CERTIFICATE -keystore /PATH_YOU/WANT_TO_STORE/keystore.jks`
+ 
 
-By doing this, he will ask you to set a password for the trusted
-certificate store. Remember this password, because it must be set in
-the configuration of the Elasticsearch plugin. The following settings
-must be set in the `elasticsearch.yml` configuration for
-SSL:
-
-	ssl.keystore.file: "<path to the trust certificate store>"
-	ssl.keystore.password: "< password to the trust certificate store>"
+You will be asked to set a password for the trusted certificate store. Remember this password, because it must be set in the configuration of the Elasticsearch plugin. The following settings must be set in the `elasticsearch.yml` configuration for
+### SSL:
+```
+# SSL Certificate Store for LDAP/AD.
+ssl.keystore.file: "/PATH_YOU/WANT_TO_STORE/keystore.jks"
+ssl.keystore.password: "SUPER_SECRET_PASSWORD"
+```
