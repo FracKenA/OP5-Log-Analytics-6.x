@@ -2,24 +2,31 @@
 
 ## Export Certificate from Active Directory
 1. Open the certificate manager on the AD server.
+
 ![](/media/media/image78_js.png)
 
 2. Select the certificate and open it
+
 ![](/media/media/image79_js.png)
 
 3. Select the option of copying to a file in the Details tab
+
 ![](/media/media/image80_js.png)
 
 4. Click the Next button
+
 ![](/media/media/image81.png)
 
 5. Keep the setting as shown below and click Next
+
 ![](/media/media/image82.png)
 
 6. Keep the setting as shown below and click Next.
+
 ![](/media/media/image83.png)
 
 7. Give the certificate a name
+
 ![](/media/media/image84.png)
 
 8. After the certificate is exported, this certificate should be imported into a trusted certificate file that will be used by the Elasticsearch plugin.
