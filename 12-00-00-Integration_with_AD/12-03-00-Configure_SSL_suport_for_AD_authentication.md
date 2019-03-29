@@ -37,10 +37,12 @@
 To import a certificate into a trusted certificate file, a tool called `keytool` which is located in the JDK installation directory.
   
 Use the following command to import a certificate file changing the path to your SSL Certificate.
+
 `keytool -import -alias YOUR_AD_DOMAIN_FQDN -storepass SUPER_SECRET_PASSWORD -file PATH_TO_CERTIFICATE -keystore /PATH_YOU/WANT_TO_STORE/keystore.jks`
  
 
 You will be asked to set a password for the trusted certificate store. Remember this password, because it must be set in the configuration of the Elasticsearch plugin. The following settings must be set in the `elasticsearch.yml` configuration for
+
 ### SSL:
 ```
 # SSL Certificate Store for LDAP/AD.
